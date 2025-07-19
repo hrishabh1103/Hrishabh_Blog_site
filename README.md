@@ -26,7 +26,7 @@ This blog features a refreshing UI/UX with smooth transitions, dark & light mode
 
 ## 🚀 Live Preview
 **[Visit My Blog Website]([https://your-live-link-here](https://hrishabhblog.vercel.app/))**  
-*(https://hrishabhblog.vercel.app/)*
+*https://hrishabhblog.vercel.app/*
 
 ---
 
