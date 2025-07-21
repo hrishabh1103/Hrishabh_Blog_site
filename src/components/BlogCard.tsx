@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Tag, ArrowRight, Clock } from 'lucide-react';
+import { Calendar, Tag, ArrowRight, Clock, Share2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BlogPost } from '../data/blogData';
 import { useLanguage } from '../contexts/LanguageContext';
+import ShareModal from './ShareModal';
 
 interface BlogCardProps {
   post: BlogPost;
@@ -12,6 +13,8 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
   const { language, t } = useLanguage();
+  const [isShareModalOpen, setIsShareModalOpen] = React.useState(false);
+  const [currentUrl, setCurrentUrl] = React.useState('');
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -23,6 +26,15 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
       month: 'short', 
       day: 'numeric' 
     });
+  };
+
+  React.useEffect(() => {
+    setCurrentUrl(`${window.location.origin}/blog/${post.id}`);
+  }, [post.id]);
+
+  const handleShareClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsShareModalOpen(true);
   };
 
   return (
@@ -45,7 +57,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
         <motion.img
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.4 }}
           src={post.image}
           alt={post.title}
@@ -53,7 +65,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
         
-        {/* Language Badge */}
+        {/* Badges */}
         <div className="absolute top-4 right-4">
           <div className="flex space-x-2">
             <span className="px-2 py-1 bg-white/90 dark:bg-gray-800/90 amoled:bg-gray-900/90 backdrop-blur-sm text-gray-700 dark:text-gray-200 amoled:text-gray-100 text-xs font-medium rounded-full">
@@ -66,6 +78,16 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
             </span>
           </div>
         </div>
+
+        {/* Share Button */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={handleShareClick}
+          className="absolute bottom-4 right-4 p-2 bg-white/90 dark:bg-gray-800/90 amoled:bg-gray-900/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white dark:hover:bg-gray-800 amoled:hover:bg-gray-900 transition-colors"
+        >
+          <Share2 className="w-4 h-4 text-gray-700 dark:text-gray-200 amoled:text-gray-100" />
+        </motion.button>
       </div>
 
       {/* Content */}
@@ -123,6 +145,13 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
 
       {/* Hover Effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-purple-500/0 group-hover:from-indigo-500/5 group-hover:to-purple-500/5 dark:group-hover:from-indigo-500/10 dark:group-hover:to-purple-500/10 amoled:group-hover:from-indigo-500/20 amoled:group-hover:to-purple-500/20 transition-all duration-500 pointer-events-none rounded-3xl" />
+
+      {/* Share Modal */}
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        post={post}
+      />
     </motion.article>
   );
 };
