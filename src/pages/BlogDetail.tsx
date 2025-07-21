@@ -11,6 +11,8 @@ const BlogDetail: React.FC = () => {
   const { language } = useLanguage();
   const [isShareModalOpen, setIsShareModalOpen] = React.useState(false);
   
+  const blogUrl = `${window.location.origin}/blog/${id}`;
+  
   const post = blogPosts.find(p => p.id === id);
 
   if (!post) {
@@ -85,6 +87,7 @@ const BlogDetail: React.FC = () => {
           isOpen={isShareModalOpen}
           onClose={() => setIsShareModalOpen(false)}
           post={post}
+          blogUrl={blogUrl}
         />
 
         {/* Article Content */}
