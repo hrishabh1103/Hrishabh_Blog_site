@@ -11,7 +11,7 @@ const BlogDetail: React.FC = () => {
   const { language } = useLanguage();
   const [isShareModalOpen, setIsShareModalOpen] = React.useState(false);
   
-  const blogUrl = `${window.location.origin}/blog/${id}`;
+  const blogUrl = `${window.location.origin}${window.location.pathname}`;
   
   const post = blogPosts.find(p => p.id === id);
 
@@ -176,7 +176,7 @@ const BlogDetail: React.FC = () => {
               .map((relatedPost) => (
                 <Link
                   key={relatedPost.id}
-                  to={`/blog/${relatedPost.id}`}
+                  to={`/${relatedPost.language === 'en' ? 'english-blogs' : 'hindi-blogs'}/${relatedPost.id}`}
                   className="group"
                 >
                   <motion.div
