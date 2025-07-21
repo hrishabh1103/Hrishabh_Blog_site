@@ -14,7 +14,6 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
   const { language, t } = useLanguage();
   const [isShareModalOpen, setIsShareModalOpen] = React.useState(false);
-  const [currentUrl, setCurrentUrl] = React.useState('');
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -28,9 +27,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
     });
   };
 
-  React.useEffect(() => {
-    setCurrentUrl(`${window.location.origin}/blog/${post.id}`);
-  }, [post.id]);
+  const blogUrl = `${window.location.origin}/blog/${post.id}`;
 
   const handleShareClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -151,6 +148,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
         isOpen={isShareModalOpen}
         onClose={() => setIsShareModalOpen(false)}
         post={post}
+        blogUrl={blogUrl}
       />
     </motion.article>
   );
