@@ -17,7 +17,7 @@ const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, post, blogUrl 
 
   if (!post) return null;
 
-  const currentUrl = blogUrl || `${window.location.origin}/blog/${post.id}`;
+  const currentUrl = blogUrl || `${window.location.origin}/${post.language === 'en' ? 'english-blogs' : 'hindi-blogs'}/${post.id}`;
   const shareText = `${post.title} - ${post.excerpt}`;
 
   const copyToClipboard = async () => {
