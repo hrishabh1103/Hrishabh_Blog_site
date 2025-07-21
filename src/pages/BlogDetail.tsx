@@ -1,13 +1,15 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Tag, Share2 } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag, Share2, Copy, Check } from 'lucide-react';
 import { blogPosts } from '../data/blogData';
 import { useLanguage } from '../contexts/LanguageContext';
+import ShareModal from '../components/ShareModal';
 
 const BlogDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { language } = useLanguage();
+  const [isShareModalOpen, setIsShareModalOpen] = React.useState(false);
   
   const post = blogPosts.find(p => p.id === id);
 
@@ -78,6 +80,13 @@ const BlogDetail: React.FC = () => {
           )}
         </motion.div>
 
+        {/* Share Modal */}
+        <ShareModal
+          isOpen={isShareModalOpen}
+          onClose={() => setIsShareModalOpen(false)}
+          post={post}
+        />
+
         {/* Article Content */}
         <motion.article
           initial={{ opacity: 0, y: 30 }}
@@ -105,6 +114,7 @@ const BlogDetail: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setIsShareModalOpen(true)}
               className="flex items-center space-x-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
             >
               <Share2 className="w-4 h-4 text-white" />
