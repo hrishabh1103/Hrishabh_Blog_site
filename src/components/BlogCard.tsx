@@ -27,7 +27,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
     });
   };
 
-  const blogUrl = `${window.location.origin}/blog/${post.id}`;
+  const blogUrl = `${window.location.origin}/${post.language === 'en' ? 'english-blogs' : 'hindi-blogs'}/${post.id}`;
 
   const handleShareClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -132,7 +132,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
 
         {/* Read More Button */}
         <Link
-          to={`/blog/${post.id}`}
+          to={`/${post.language === 'en' ? 'english-blogs' : 'hindi-blogs'}/${post.id}`}
           className={`inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 amoled:text-indigo-300 hover:text-indigo-700 dark:hover:text-indigo-300 amoled:hover:text-indigo-200 font-semibold transition-colors group ${post.language === 'hi' ? 'font-hindi' : 'font-english'}`}
         >
           <span>{t('readMore')}</span>
