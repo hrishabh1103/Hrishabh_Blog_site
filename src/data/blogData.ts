@@ -435,7 +435,7 @@ Because in the end, technology should serve humanity, not enslave it.`,
   date: '2024-12-12',
   language: 'hi',
   featured: true,
-  image: 'https://drive.google.com/file/d/150o8va8UAlC9cA_omuPFIfxaAtvr_evj/view?usp=sharing',
+  image: 'https://i1.sndcdn.com/artworks-acggmIUvblVxz8XM-qQrcMw-t240x240.jpg',
   tags: ['कविता', 'प्रेम', 'विरह', 'मिलन'],
   category: 'poem'
 }
