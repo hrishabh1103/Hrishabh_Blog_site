@@ -439,5 +439,4 @@ Because in the end, technology should serve humanity, not enslave it.`,
   tags: ['कविता', 'प्रेम', 'विरह', 'मिलन'],
   category: 'poem'
 }
-	
 ];
