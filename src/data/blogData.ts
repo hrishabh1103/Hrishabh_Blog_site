@@ -128,6 +128,8 @@ College isn’t just about lectures and assignments. It’s about learning who y
     tags: ['College Life', 'New Journey', 'Hostel', 'Friendship', 'Memories', 'Student Life'],
     category: 'story',
   },
+	// Deadline to add a new story is the next week 
+
   {
     id: '6',
     title: 'एक नई शुरुआत – कॉलेज की दास्तान',
