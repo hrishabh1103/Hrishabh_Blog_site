@@ -10,6 +10,7 @@ interface BlogCardProps {
   post: BlogPost;
   index: number;
 }
+// The update should go live within the next 2 days
 // can u please add the new animation soon
 const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
   const { language, t } = useLanguage();
