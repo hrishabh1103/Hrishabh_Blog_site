@@ -10,7 +10,7 @@ interface BlogCardProps {
   post: BlogPost;
   index: number;
 }
-
+// can u please add the new animation soon
 const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
   const { language, t } = useLanguage();
   const [isShareModalOpen, setIsShareModalOpen] = React.useState(false);
